@@ -1,0 +1,6 @@
+# Docker files
+Dockerfile
+.dockerignore
+
+# Documentation files
+README.md
