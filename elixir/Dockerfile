@@ -2,12 +2,12 @@ FROM amazonlinux:2
 
 ENV ELIXIR_VERSION 1.9.2
 
-RUN yum install -y unzip && \
-    mkdir -p /opt/elixir/${ELIXIR_VERSION}/ && \
-    curl -Lo /tmp/elixir.zip https://github.com/elixir-lang/elixir/releases/download/v${ELIXIR_VERSION}/Precompiled.zip && \
-    unzip /tmp/elixir.zip -d /opt/elixir/${ELIXIR_VERSION}/
+RUN yum install -y unzip
+RUN mkdir -p /opt/elixir/${ELIXIR_VERSION}/
+RUN curl -Lo /tmp/elixir.zip https://github.com/elixir-lang/elixir/releases/download/v${ELIXIR_VERSION}/Precompiled.zip
+RUN unzip /tmp/elixir.zip -d /opt/elixir/${ELIXIR_VERSION}/
 
-FROM groguelon/amazonlinux2-erlang:22.1
+FROM groguelon/erlang:22.1-amazonlinux2
 
 LABEL maintainer="Geoffrey Roguelon"
 
