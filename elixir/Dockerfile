@@ -1,6 +1,6 @@
 FROM amazonlinux:2
 
-ENV ELIXIR_VERSION 1.9.2
+ENV ELIXIR_VERSION 1.9.3
 
 RUN yum install -y unzip
 RUN mkdir -p /opt/elixir/${ELIXIR_VERSION}/
@@ -11,7 +11,7 @@ FROM groguelon/erlang:22.1-amazonlinux2
 
 LABEL maintainer="Geoffrey Roguelon"
 
-ENV PATH /opt/elixir/1.9.2/bin:$PATH
+ENV PATH /opt/elixir/1.9.3/bin:$PATH
 
 COPY --from=0 /opt/elixir /opt/elixir
 
