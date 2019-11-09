@@ -6,13 +6,27 @@ ENV LANGUAGE en_US.UTF-8
 ENV ERLANG_VERSION 22.1
 ENV ERL_TOP /tmp/otp_src_${ERLANG_VERSION}
 
-RUN yum install -y gcc perl m4 openssl-devel ncurses-devel unixODBC unixODBC-devel libxslt tar gzip make && \
-    curl -Lo /tmp/otp_src_${ERLANG_VERSION}.tar.gz http://www.erlang.org/download/otp_src_${ERLANG_VERSION}.tar.gz && \
-    tar -C /tmp -zxf /tmp/otp_src_${ERLANG_VERSION}.tar.gz && \
-    cd $ERL_TOP && \
-    ./configure --prefix=/opt/erlang/${ERLANG_VERSION} --without-wx --without-javac && \
-    make -j$(nproc) && \
-    make -j$(nproc) install
+RUN yum install -y \
+    gcc \
+    gcc-c++ \
+    gzip \
+    libxslt \
+    m4 \
+    make \
+    ncurses-devel \
+    openssl-devel \
+    perl \
+    tar \
+    unixODBC \
+    unixODBC-devel
+RUN curl -Lo /tmp/otp_src_${ERLANG_VERSION}.tar.gz http://www.erlang.org/download/otp_src_${ERLANG_VERSION}.tar.gz
+RUN tar -C /tmp -xzf /tmp/otp_src_${ERLANG_VERSION}.tar.gz
+
+WORKDIR $ERL_TOP
+
+RUN ./configure --prefix=/opt/erlang/${ERLANG_VERSION} --without-wx --without-javac
+RUN make -j$(nproc)
+RUN make -j$(nproc) install
 
 FROM amazonlinux:2
 
