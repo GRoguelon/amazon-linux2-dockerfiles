@@ -3,7 +3,7 @@ FROM amazonlinux:2
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
-ENV ERLANG_VERSION 22.1
+ENV ERLANG_VERSION 22.2
 ENV ERL_TOP /tmp/otp_src_${ERLANG_VERSION}
 
 RUN yum install -y \
@@ -35,7 +35,7 @@ LABEL maintainer="Geoffrey Roguelon"
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
-ENV PATH /opt/erlang/22.1/bin:$PATH
+ENV PATH /opt/erlang/22.2/bin:$PATH
 
 RUN yum install -y unixODBC libxslt && \
     yum clean all
